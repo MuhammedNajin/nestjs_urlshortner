@@ -3,7 +3,19 @@ import { HydratedDocument } from 'mongoose';
 
 export type UserDocument = HydratedDocument<User>
 
-@Schema({ timestamps: true })
+const OPTIONS = { 
+  timestamps: true,
+  toJSON: {
+     transform: (_, ret) => {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.password;
+        delete ret.__v;
+     }
+  } 
+}
+
+@Schema(OPTIONS)
 export class User {
   @Prop({ required: true })
   name: string;

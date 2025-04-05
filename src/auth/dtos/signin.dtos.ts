@@ -1,11 +1,10 @@
-import { IsEmail, IsString, MinLength } from "class-validator";
-
-
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 export class SigninDto {
-  @IsEmail()
+  @IsEmail({}, { message: 'Invalid email format' })
+  @IsNotEmpty({ message: 'Email is required' })
   email: string;
-  
-  @IsString()
-  @MinLength(6)
+
+  @IsString({ message: 'Password must be a string' })
+  @IsNotEmpty({ message: 'Password is required' })
   password: string;
 }

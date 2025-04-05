@@ -11,7 +11,7 @@ export class AuthController {
 
     @Post('signup')
     @HttpCode(HttpStatus.CREATED)
-    async signup(@Body() userData: CreateUserDto, @Res() res: Response) {
+    async signup(@Body() userData: CreateUserDto) {
          
         const { name, email, password } = userData;
         return await this.authService.register(name, email, password);
@@ -19,7 +19,7 @@ export class AuthController {
 
     @Post('signin')
     @HttpCode(HttpStatus.OK)
-    async signin(@Body() credential: SigninDto, @Res() res: Response)  {
+    async signin(@Body() credential: SigninDto)  {
         const { email, password } = credential;
         return await this.authService.login(email, password);
     }

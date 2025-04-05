@@ -2,7 +2,6 @@ import { BaseRepository } from "src/common/repositories/base.repository";
 import { User, UserDocument } from "../schema/auth.schema";
 import { IUserRepository } from "../interfaces/IUser.repository";
 import { InjectModel } from "@nestjs/mongoose";
-import { read } from "fs";
 import { Model } from "mongoose";
 import { Injectable } from "@nestjs/common";
 

@@ -7,6 +7,7 @@ import { AuthService } from './service/auth.service';
 import { UserRepository } from './repository/auth.repository';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ResponseMapper } from 'src/common/services/responseMapper';
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   providers: [
     CryptoService, 
     AuthService, 
-    UserRepository
+    UserRepository,
+    ResponseMapper
   ],
 })
 
