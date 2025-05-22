@@ -16,4 +16,12 @@ export class UrlRepository extends BaseRepository<Url> implements IUrlRepository
          return await this.urlModal.findOne({ shortId }).lean();
     }
 
+
+    async getAllUrls(userId: string): Promise<Url[]> {
+        return await this.urlModal.find({ userId }).sort({ createdAt: -1 });
+    }
+
+    async delete(key: string): Promise<void> {
+        await this.urlModal.deleteOne({ key});
+    }
 }

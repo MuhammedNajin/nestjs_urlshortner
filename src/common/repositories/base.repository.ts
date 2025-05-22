@@ -16,4 +16,6 @@ export class BaseRepository<T> implements IBaseRepository<T> {
         return this.model.findOne({ id }).exec();
     }
 
+    
+
 }

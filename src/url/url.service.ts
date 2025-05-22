@@ -23,7 +23,7 @@ export class UrlService {
       await this.urlRepository.create({ shortId, url, userId}); 
 
       return this.responseMapper.success({
-        data: `${process.env.DOMAIN}/${shortId}`,
+        data: `${process.env.DOMAIN}/urls/${shortId}`,
         message: 'Short URL created successfully',
       })
   }
@@ -31,5 +31,19 @@ export class UrlService {
   async exapandShortUrl(key: string): Promise<string> {
     const urlDoc = await this.urlRepository.findByKey(key);
     return urlDoc.url;
+  }
+
+  async getAllUrls(userId: string) {
+    const urls = await this.urlRepository.getAllUrls(userId);
+    return this.responseMapper.success({
+      data: urls,
+      message: 'Fetched all URLs successfully',
+    });
+  }
+
+  async deleteUrl(key: string) {
+  
+    await this.urlRepository.delete(key);
+    return 'URL deleted successfully';
   }
 }
